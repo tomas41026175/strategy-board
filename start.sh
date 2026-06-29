@@ -60,6 +60,22 @@ echo "→ 啟動 frontend http://localhost:5173"
 ) &
 pids+=($!)
 
+# ── 等 frontend ready 後自動開啟瀏覽器 ──────────────────────────────────────
+FRONTEND_URL="http://localhost:5173"
+(
+  for _ in $(seq 1 40); do
+    if curl -s -o /dev/null "$FRONTEND_URL" 2>/dev/null; then
+      if command -v open >/dev/null 2>&1; then
+        open "$FRONTEND_URL" 2>/dev/null
+      elif command -v xdg-open >/dev/null 2>&1; then
+        xdg-open "$FRONTEND_URL" 2>/dev/null
+      fi
+      break
+    fi
+    sleep 0.5
+  done
+) &
+
 echo ""
 echo "Strategy Board 開發環境啟動中(Ctrl+C 結束)"
 echo "  backend  : http://localhost:8000"
