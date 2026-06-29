@@ -18,6 +18,17 @@ Backend   FastAPI + 純 pandas 引擎(production 可抽換 vectorbt)+ SQLite + F
 
 ## 啟動
 
+一鍵啟動(已裝好依賴後,日常用 — 起 backend+frontend 並自動開瀏覽器):
+
+```bash
+./start.sh      # mac / Linux:背景起兩個 server,Ctrl+C 一併關閉
+start.bat       # Windows:雙擊或 cmd 執行,backend/frontend 各自開新視窗(關視窗即停)
+```
+
+兩者都會做:`.venv`/`node_modules` 前置檢查 → port 8000/5173 占用檢查 → 起 server → 等 5173 ready 後開瀏覽器。
+
+首次安裝 / 需要手動分別啟動時:
+
 ```bash
 # 後端(:8000)
 cd backend && python3 -m venv .venv && source .venv/bin/activate
