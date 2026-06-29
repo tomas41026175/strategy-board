@@ -12,6 +12,7 @@ import { TradesTable } from "./features/TradesTable";
 import { CompareView } from "./features/CompareView";
 import { HistoryPanel, type RunSummary } from "./features/HistoryPanel";
 import { SweepPanel } from "./features/SweepPanel";
+import { Glossary } from "./features/Glossary";
 import { fetchEvents, eventsToMarkers } from "./features/events";
 import { Card, CardContent, CardHeader, CardTitle } from "./components/ui/card";
 import { Button } from "./components/ui/button";
@@ -115,7 +116,8 @@ export default function App() {
       <header className="h-12 border-b border-border flex items-center px-4 gap-4 shrink-0">
         <span className="font-semibold">⚡ Strategy Board</span>
         <span className="text-xs text-muted-foreground">資料區間 2018–2024</span>
-        <div className="ml-auto">
+        <div className="ml-auto flex items-center gap-3">
+          <Glossary />
           <SymbolSelector value={symbol} onChange={setSymbol} />
         </div>
       </header>
@@ -199,7 +201,9 @@ export default function App() {
                   </CardHeader>
                   <CardContent className="grid grid-cols-3 gap-4">
                     <div>
-                      <div className="text-xs text-muted-foreground">WFE</div>
+                      <div className="text-xs text-muted-foreground">
+                        WFE 樣本外效率
+                      </div>
                       <div className="font-mono text-lg">
                         {num(result.walk_forward.wfe)}
                       </div>
@@ -209,7 +213,7 @@ export default function App() {
                     </div>
                     <div>
                       <div className="text-xs text-muted-foreground">
-                        OOS Decay
+                        樣本外衰退 OOS Decay
                       </div>
                       <div className="font-mono text-lg">
                         {pct(result.walk_forward.oos_decay, 2)}

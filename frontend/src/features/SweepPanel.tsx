@@ -63,8 +63,8 @@ function generateValues(spec: ParamSpec, count = 12): number[] {
 
 const METRIC_LABELS: Record<SweepMetric, string> = {
   expectancy: "期望值",
-  cagr: "CAGR",
-  sharpe: "Sharpe",
+  cagr: "年化報酬 CAGR",
+  sharpe: "夏普值 Sharpe",
   profit_factor: "獲利因子",
 };
 

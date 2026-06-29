@@ -28,7 +28,7 @@ interface RowDef {
 
 const KPI_ROWS: RowDef[] = [
   {
-    label: "CAGR",
+    label: "年化報酬 CAGR",
     format: (r) => pct(r.metrics.cagr),
     colorClass: (r) => (r.metrics.cagr >= 0 ? "text-profit" : "text-loss"),
   },
@@ -38,7 +38,7 @@ const KPI_ROWS: RowDef[] = [
     colorClass: () => "text-loss",
   },
   {
-    label: "Sharpe",
+    label: "夏普值 Sharpe",
     format: (r) => num(r.metrics.sharpe),
   },
   {

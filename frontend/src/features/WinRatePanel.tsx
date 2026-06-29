@@ -94,7 +94,7 @@ export function WinRatePanel({ m }: { m: Metrics }) {
         {m.win_rate_by_window.length > 0 && (
           <div>
             <div className="text-xs text-muted-foreground mb-1">
-              勝率穩定度(各 OOS 視窗)
+              勝率穩定度(各樣本外視窗)
             </div>
             <div className="flex gap-1 items-end h-12">
               {m.win_rate_by_window.map((w, i) => (

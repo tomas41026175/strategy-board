@@ -35,16 +35,16 @@ export function MetricsPanel({ m }: { m: Metrics }) {
   return (
     <div className="grid grid-cols-2 md:grid-cols-5 gap-3">
       <Tile
-        label="CAGR"
+        label="年化報酬 CAGR"
         value={pct(m.cagr)}
-        sub={`vs B&H ${pct(m.benchmark_cagr)}`}
+        sub={`vs 買進持有 ${pct(m.benchmark_cagr)}`}
         tone={m.alpha_vs_benchmark > 0 ? "profit" : "loss"}
       />
       <Tile label="最大回撤" value={pct(m.max_drawdown)} tone="loss" />
       <Tile
-        label="Sharpe"
+        label="夏普值 Sharpe"
         value={num(m.sharpe)}
-        sub={`Calmar ${num(m.calmar)}`}
+        sub={`報酬回撤 Calmar ${num(m.calmar)}`}
         tone={m.sharpe >= 1 ? "profit" : "neutral"}
       />
       <Tile

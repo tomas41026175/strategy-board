@@ -65,7 +65,7 @@ export function EquityChart({
       color: "#58606a",
       lineWidth: 1,
       lineStyle: 2,
-      title: "Buy&Hold",
+      title: "買進持有 Buy&Hold",
     });
     bh.setData(benchmark as never);
 
@@ -78,7 +78,7 @@ export function EquityChart({
             position: "aboveBar",
             color: "#2563eb",
             shape: "arrowDown",
-            text: "OOS 起點",
+            text: "樣本外起點",
           },
         ]
       : [];
@@ -94,9 +94,9 @@ export function EquityChart({
   return (
     <Card>
       <CardHeader className="flex items-center justify-between">
-        <CardTitle>權益曲線 vs Buy&Hold</CardTitle>
+        <CardTitle>權益曲線 vs 買進持有</CardTitle>
         <span className="text-xs text-muted-foreground">
-          灰=樣本內 · 綠=樣本外 · 虛線=Buy&Hold
+          灰=樣本內 · 綠=樣本外 · 虛線=買進持有
         </span>
       </CardHeader>
       <CardContent>
