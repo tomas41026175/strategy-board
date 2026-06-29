@@ -1,0 +1,14 @@
+# Python
+backend/.venv/
+__pycache__/
+*.pyc
+backend/data_cache/
+backend/board.db
+
+# Node
+frontend/node_modules/
+frontend/dist/
+
+# Playwright
+frontend/.playwright-mcp/
+.DS_Store

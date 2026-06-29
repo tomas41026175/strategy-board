@@ -1,0 +1,16 @@
+# === 核心(必裝,純回測即可運作)===
+fastapi>=0.110
+uvicorn[standard]>=0.29
+pandas>=2.0
+numpy>=1.26
+pydantic>=2.0
+pyarrow>=15.0          # parquet 資料快取
+
+# === 真實資料(選用:FinMind 台指期免費 tier)===
+# FinMind 在 Python 3.14 需繞路安裝(它 pin lxml<5,在 3.14 編譯失敗):
+#   pip install "lxml>=5.0.0"
+#   pip install --no-deps FinMind
+#   pip install ta nest_asyncio websocket-client aiohttp deprecation importlib_metadata loguru requests tqdm
+# 不裝也可運作:資料層會自動 fallback 到合成資料(data_source=synthetic)。
+# lxml>=5.0.0
+# FinMind>=1.6
