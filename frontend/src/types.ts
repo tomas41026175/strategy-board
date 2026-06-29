@@ -49,6 +49,15 @@ export interface Metrics {
   alpha_vs_benchmark: number;
   warn_low_sample: boolean;
   warn_high_winrate_neg_exp: boolean;
+  // 防呆:指標統計範圍。metrics 永遠是「全期 in-sample」;
+  // 樣本外結果在 walk_forward 區塊,wf 模式時 oos_summary 提供對照。
+  scope?: "full_in_sample" | "full_in_sample_with_oos";
+  oos_summary?: {
+    total_return: number | null;
+    wfe: number;
+    oos_decay: number;
+    n_windows: number;
+  };
 }
 
 export interface Trade {
