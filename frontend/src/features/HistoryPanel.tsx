@@ -99,7 +99,7 @@ export function HistoryPanel({ onLoad, refreshKey }: HistoryPanelProps) {
                       run.cagr >= 0 ? "text-green-400" : "text-red-400"
                     )}
                   >
-                    CAGR {pct(run.cagr)}
+                    年化報酬 {pct(run.cagr)}
                   </span>
                   <span className="text-muted-foreground">
                     勝率 {pct(run.win_rate)}
