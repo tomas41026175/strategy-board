@@ -76,6 +76,10 @@ def _compute(req: BacktestRequest) -> dict:
     metrics = compute_metrics(
         result.equity, result.trades, benchmark, ppy=PERIODS_PER_YEAR
     )
+    # 防呆:標記指標統計範圍。此處 metrics 永遠來自「全期 in-sample」回測;
+    # walk-forward 的樣本外結果在 response["walk_forward"](見下方附加區塊)。
+    # 無此標記極易把全期數字誤讀為樣本外(2026-06-29 dev-log 調查紀錄)。
+    metrics["scope"] = "full_in_sample"
 
     roll_max = result.equity.cummax()
     drawdown = result.equity / roll_max - 1
@@ -116,6 +120,16 @@ def _compute(req: BacktestRequest) -> dict:
         response["walk_forward"] = wf
         # 把各視窗 OOS 勝率回填 metrics,讓勝率分析 panel 畫穩定度
         response["metrics"]["win_rate_by_window"] = wf.get("win_rate_by_window", [])
+        # 防呆:wf 模式下,把真正的樣本外摘要附到 metrics,並升級 scope 標記,
+        # 讓只看 metrics 的消費端(CLI / agent / sweep)不會把全期當樣本外。
+        oos_eq = wf.get("equity") or []
+        response["metrics"]["scope"] = "full_in_sample_with_oos"
+        response["metrics"]["oos_summary"] = {
+            "total_return": round(oos_eq[-1]["value"] - 1.0, 6) if oos_eq else None,
+            "wfe": wf.get("wfe"),
+            "oos_decay": wf.get("oos_decay"),
+            "n_windows": wf.get("n_windows"),
+        }
 
     return response
 
